@@ -60,13 +60,13 @@ namespace TesteDllTrueRandom
             {
                 int[] data = GetData(int.Parse(txtQuantify.Text), int.Parse(txtMinValue.Text), int.Parse(txtMaxValue.Text));
                 
-                return rdm.SetInteger(data[0], data[1], data[2]).ToList();
+                return rdm.SetInteger((uint)data[0], data[1], data[2]).ToList();
             }
             else
             {
                 int[] data = GetData(int.Parse(txtQuantify.Text), int.Parse(txtMaxValue.Text));
 
-                return rdm.SetInteger(data[0], 0, data[1]).ToList();
+                return rdm.SetInteger((uint)data[0], 0, data[1]).ToList();
             }
 
         }

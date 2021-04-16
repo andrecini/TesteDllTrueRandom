@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Presys.Random;
+using System.Diagnostics;
 
 namespace TesteDllTrueRandom
 {
@@ -18,15 +19,22 @@ namespace TesteDllTrueRandom
             InitializeComponent();
         }
 
-        private static TrueRandom rdm = new TrueRandom();
+        private static TrueRandom trdm = new TrueRandom();
+        private static System.Random rdm = new Random();
+        private static Stopwatch sw = new Stopwatch();
 
         private void btnSortear_Click(object sender, EventArgs e)
         {
-
+            sw.Start();
             try
             {
                 BindingSource bsG = new BindingSource();
-                bsG.DataSource = ReturnDataTable(listTreatment(SortNumbers()));
+
+                if (rbTrueRandom.Checked)
+                    bsG.DataSource = ReturnDataTable(listTreatment(SortNumbers()));
+                else
+                    bsG.DataSource = ReturnDataTable(listTreatment(SortNumbers("System Random")));
+
                 dataGridView1.DataSource = bsG;
 
                 chart1.DataSource = dataGridView1.DataSource;
@@ -38,8 +46,11 @@ namespace TesteDllTrueRandom
             catch (Exception error)
             {
                 MessageBox.Show(error.Message);
-            }     
-           
+            } 
+            sw.Stop();
+
+            lblTotalTime.Text = string.Format("{0:f3}", sw.ElapsedMilliseconds / 1000);
+            lblTotalTime.Visible = true;
         }
 
         private int[] GetData(int quantify, int min, int max)
@@ -69,14 +80,41 @@ namespace TesteDllTrueRandom
             {
                 int[] data = GetData(int.Parse(txtQuantify.Text), int.Parse(txtMinValue.Text), int.Parse(txtMaxValue.Text));
                 
-                return rdm.SetInteger((uint)data[0], data[1], data[2]).ToList();
+                return trdm.SetInteger((uint)data[0], data[1], data[2]).ToList();
             }
             else
             {
                 int[] data = GetData(int.Parse(txtQuantify.Text), int.Parse(txtMaxValue.Text));
 
-                return rdm.SetInteger((uint)data[0], 0, data[1]).ToList();
+                return trdm.SetInteger((uint)data[0], 0, data[1]).ToList();
             }
+
+        }
+
+        private List<long> SortNumbers(string anything)
+        {
+            List<long> list = new List<long>();
+
+            if (cbMinValue.Checked)
+            {
+                int[] data = GetData(int.Parse(txtQuantify.Text), int.Parse(txtMinValue.Text), int.Parse(txtMaxValue.Text));
+
+                for (int i = 0; i < data[0]; i++)
+                {
+                    list.Add(rdm.Next(data[1], data[2]));
+                }
+            }
+            else
+            {
+                int[] data = GetData(int.Parse(txtQuantify.Text), int.Parse(txtMaxValue.Text));
+
+                for (int i = 0; i < data[0]; i++)
+                {
+                    list.Add(rdm.Next(data[1]));
+                }
+            }
+
+            return list;
 
         }
 
@@ -135,6 +173,22 @@ namespace TesteDllTrueRandom
             chart1.Series[0].LegendText = "Números Gerados";
             chart1.Series[0].XValueMember = "Número";
             chart1.Series[0].YValueMembers = "Repetições";
+        }
+                
+        private void colunasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+
+        }
+
+        private void linesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+        }
+
+        private void PizzaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
         }
     }
 }

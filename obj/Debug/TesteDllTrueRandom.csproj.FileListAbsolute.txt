@@ -1,0 +1,11 @@
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\bin\Debug\TesteDllTrueRandom.exe.config
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\bin\Debug\TesteDllTrueRandom.exe
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\bin\Debug\TesteDllTrueRandom.pdb
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\obj\Debug\TesteDllTrueRandom.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\obj\Debug\TesteDllTrueRandom.Form1.resources
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\obj\Debug\TesteDllTrueRandom.Properties.Resources.resources
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\obj\Debug\TesteDllTrueRandom.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\obj\Debug\TesteDllTrueRandom.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\obj\Debug\TesteDllTrueRandom.csproj.CopyComplete
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\obj\Debug\TesteDllTrueRandom.exe
+C:\Users\admin\Desktop\TestesEstudoDeCodigos\TesteDllTrueRandom\obj\Debug\TesteDllTrueRandom.pdb

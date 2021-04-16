@@ -22,15 +22,24 @@ namespace TesteDllTrueRandom
 
         private void btnSortear_Click(object sender, EventArgs e)
         {
-            BindingSource bsG = new BindingSource();
-            bsG.DataSource = ReturnDataTable(listTreatment(SortNumbers()));
-            dataGridView1.DataSource = bsG;
 
-            chart1.DataSource = dataGridView1.DataSource;
+            try
+            {
+                BindingSource bsG = new BindingSource();
+                bsG.DataSource = ReturnDataTable(listTreatment(SortNumbers()));
+                dataGridView1.DataSource = bsG;
 
-            SetSeries();
+                chart1.DataSource = dataGridView1.DataSource;
 
-            chart1.DataBind();
+                SetSeries();
+
+                chart1.DataBind();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }     
+           
         }
 
         private int[] GetData(int quantify, int min, int max)
